@@ -1,0 +1,58 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Url Info";
+}
+
+<h3>Url Info</h3>
+
+<table class="table" id="urlTable">
+    <thead>
+        <tr>
+            <th>URL</th>
+            <th>Last request date</th>
+            <th>last title</th>
+            <th>last status</th>
+            <th></th>
+        </tr>    
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="url">@item</td>
+                <td class="date">loading...</td>
+                <td class="title">loading...</td>
+                <td class="status">loading...</td>
+                <td>@Html.ActionLink("Stats", "UrlStatistics", new { url = item })</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#urlTable').find('tbody > tr').each(function (i, el) {
+                var urlCell = $(el).find('.url');
+                var dateCell = $(el).find('.date');
+                var titleCell = $(el).find('.title');
+                var statusCell = $(el).find('.status');
+
+                var url = urlCell.text();
+
+                $.get('/Url/GetUrlInfo?url=' + url, function(data) {
+                    titleCell.text(data.LastTitle);
+                    statusCell.text(data.LastStatus);
+                    dateCell.text(data.LastRequestDate);
+                }).fail(function() {
+                    titleCell.text('');
+                    statusCell.text('server error');
+                    dateCell.text('');
+                });
+            });
+        });
+    </script>
+}
