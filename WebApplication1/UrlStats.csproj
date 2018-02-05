@@ -198,7 +198,6 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -206,10 +205,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\FullAndPartialViewModel.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UrlContext.cs" />
     <Compile Include="Models\UrlInfo.cs" />
     <Compile Include="Models\UrlInfoModel.cs" />
@@ -253,14 +248,9 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Url\Index.cshtml" />
     <Content Include="Views\Url\UrlForm.cshtml" />
     <Content Include="Views\Url\UrlInfo.cshtml" />
-    <Content Include="Views\Url\IndexAsync.cshtml" />
-    <Content Include="Views\Url\GetCategoryProducts.cshtml" />
-    <Content Include="Views\Url\CategoryResults.cshtml" />
     <Content Include="Views\Url\UrlStatistics.cshtml" />
     <Content Include="Views\Url\Graf.cshtml" />
   </ItemGroup>

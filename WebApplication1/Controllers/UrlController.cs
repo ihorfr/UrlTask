@@ -41,7 +41,8 @@ namespace WebApplication1.Controllers
         public ActionResult UrlForm(UrlViewModel model)
         {
             string parsedUrl = model.UrlText;
-            var list = parsedUrl.Split('\n');
+            //var list = parsedUrl.Split('\n');
+            var list = parsedUrl.Split(new char[] {'\n', '\r'}, StringSplitOptions.RemoveEmptyEntries);
             return View("UrlInfo", list);
         }
 
@@ -107,7 +108,6 @@ namespace WebApplication1.Controllers
                       p.LastRequestDate == LastRequestDate
                 select p).ToList();
 
-
             return View(listStat);
         }
 
@@ -135,7 +135,6 @@ namespace WebApplication1.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
         
-
         static string GetTitle(string site)
         {
             Match m = Regex.Match(site, @"<title>\s*(.+?)\s*</title>");
@@ -148,35 +147,5 @@ namespace WebApplication1.Controllers
                 return "";
             }
         }
-
-        //[HttpGet]
-        //public async Task<ActionResult> IndexAsync()
-        //{
-        //    var model = await this.GetFullAndPartialViewModel();
-        //    return this.View(model);
-        //}
-
-        //[HttpGet]
-        //public async Task<ActionResult> GetCategoryProducts(string categoryId)
-        //{
-        //    var lookupId = int.Parse(categoryId);
-        //    var model = await this.GetFullAndPartialViewModel(lookupId);
-        //    return PartialView("CategoryResults", model);
-        //}
-
-        //private async Task<FullAndPartialViewModel> GetFullAndPartialViewModel(int categoryId = 0)
-        //{
-        //    //  ... code omitted...
-        //    // populate the viewModel and return it
-        //    FullAndPartialViewModel fullAndPartialViewModel = new FullAndPartialViewModel();
-        //    fullAndPartialViewModel.CategoryId = 1;
-        //    fullAndPartialViewModel.CategoryList = new List<Models.UrlInfo>();
-        //    fullAndPartialViewModel.CategoryList.Add(new Models.UrlInfo() { URL = "111" });
-        //    fullAndPartialViewModel.CategoryList.Add(new Models.UrlInfo() { URL = "222" });
-        //    fullAndPartialViewModel.Products = new List<Models.UrlInfo>();
-        //    fullAndPartialViewModel.Products.Add(new Models.UrlInfo() { URL = "333" });
-        //    fullAndPartialViewModel.Products.Add(new Models.UrlInfo() { URL = "444" });
-        //    return fullAndPartialViewModel;
-        //}
     }
 }
